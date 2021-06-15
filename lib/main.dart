@@ -1,8 +1,10 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'homepage.dart';
+import 'human.dart';
 import 'package:flutter/services.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'selection.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -30,16 +32,16 @@ class _IntroScreenState extends State<IntroScreen>
     with SingleTickerProviderStateMixin {
   static var myNewFont = GoogleFonts.pressStart2P(
       textStyle: TextStyle(color: Colors.black, letterSpacing: 3));
-  static var myNewFontWhite = GoogleFonts.pressStart2P(
-      textStyle: TextStyle(color: Colors.white, letterSpacing: 3));
+  static var myNewFontWhite = GoogleFonts.mcLaren(
+      textStyle: TextStyle(color: Colors.amber, letterSpacing: 5));
 
   @override
   Widget build(BuildContext context) {
-    final color = Colors.white;
+    final color = Colors.amber;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Colors.brown,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,10 +49,16 @@ class _IntroScreenState extends State<IntroScreen>
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 120.0),
-                    child: Container(
-                      child: Text(
-                        "TIC TAC TOE",
-                        style: myNewFontWhite.copyWith(fontSize: 30),
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 40.0,
+                        color: Colors.black87,
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          WavyAnimatedText('TIC TAC TOE'),
+                        ],
+                        isRepeatingAnimation: true,
                       ),
                     ),
                   ),
@@ -61,7 +69,7 @@ class _IntroScreenState extends State<IntroScreen>
                     child: AvatarGlow(
                       endRadius: 140,
                       duration: Duration(seconds: 2),
-                      glowColor: Colors.white,
+                      glowColor: Colors.amber,
                       repeat: true,
                       repeatPauseDuration: Duration(seconds: 1),
                       startDelay: Duration(seconds: 1),
@@ -70,29 +78,18 @@ class _IntroScreenState extends State<IntroScreen>
                             border: Border.all(
                               style: BorderStyle.none,
                             ),
-                            shape: BoxShape.circle),
+                            shape: BoxShape.rectangle),
                         child: CircleAvatar(
-                          backgroundColor: Colors.grey[900],
+                          backgroundColor: Colors.brown,
                           child: Container(
                             child: Image.asset(
                               'lib/images/tictactoelogo.png',
-                              color: Colors.white,
+                              color: Colors.black,
                               fit: BoxFit.scaleDown,
                             ),
                           ),
                           radius: 80.0,
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 80.0),
-                    child: Container(
-                      child: Text(
-                        "@CREATEDBYMITCH",
-                        style: myNewFontWhite.copyWith(fontSize: 20),
                       ),
                     ),
                   ),
@@ -110,19 +107,34 @@ class _IntroScreenState extends State<IntroScreen>
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         padding: EdgeInsets.all(30),
-                        color: Colors.white,
-                        child: Center(
-                          child: Text(
-                            'PLAY GAME',
-                            style: myNewFont,
+                        color: Colors.brown[400],
+                        child: SizedBox(
+                          width: 250.0,
+                          height: 50.0,
+                          child: DefaultTextStyle(
+                            style: const TextStyle(
+                              fontSize: 35,
+                              color: Colors.amber,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 7.0,
+                                  color: Colors.grey,
+                                  offset: Offset(0, 0),
+                                ),
+                              ],
+                            ),
+                            child: AnimatedTextKit(
+                              repeatForever: true,
+                              animatedTexts: [
+                                FlickerAnimatedText('  PLAY GAME'),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-
-
               ],
             ),
           )),

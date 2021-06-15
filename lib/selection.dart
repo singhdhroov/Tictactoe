@@ -131,7 +131,7 @@ class _FirstPageState extends State<FirstScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Computer()),
+                      MaterialPageRoute(builder: (context) => ComputerPage()),
                     );
                   },
                   child: Padding(

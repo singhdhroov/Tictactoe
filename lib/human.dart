@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tictactoe_tutorial/main.dart';
-import 'package:tictactoe_tutorial/new.dart';
+import 'package:tictactoe_tutorial/selection.dart';
 import 'main.dart';
-import 'new.dart';
+import 'selection.dart';
 
 class Human extends StatefulWidget {
   @override
